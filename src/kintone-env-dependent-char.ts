@@ -132,13 +132,13 @@ import { KintoneRestAPIClient, KintoneRecordField } from "@kintone/rest-api-clie
                 '個人名_団体',
                 '個人名_団体_フリガナ',
                 '実納品時間',
+                '希望納品時間',
                 '担当者_名',
                 '担当者_名_フリガナ',
                 '担当者_姓',
                 '担当者_姓_フリガナ',
                 '注文者',
                 '注文商品名',
-                '注文日',
                 '納品書',
                 '請求書',
                 '都道府県',
@@ -151,7 +151,7 @@ import { KintoneRestAPIClient, KintoneRecordField } from "@kintone/rest-api-clie
             fieldCodes.forEach(fieldCode => {
                 const fieldValue = record[fieldCode]?.value;
             
-                console.log(`フィールド名: ${fieldCode}, 値: ${fieldValue}, 型: ${typeof fieldValue}`);
+                // console.log(`フィールド名: ${fieldCode}, 値: ${fieldValue}, 型: ${typeof fieldValue}`);
             
                 if (fieldValue === null || typeof fieldValue !== 'string') {
                     console.log(`${fieldCode} は値がnullまたは文字列ではありません。`);
@@ -161,7 +161,7 @@ import { KintoneRestAPIClient, KintoneRecordField } from "@kintone/rest-api-clie
                 const containsNonJIS = containsNonJISCharacters(fieldValue);
                 const containsSpecialChar = fieldValue.includes("[縺]");
             
-                console.log(`フィールド名: ${fieldCode}, Non-JIS: ${containsNonJIS}, 特殊文字: ${containsSpecialChar}`);
+                //console.log(`フィールド名: ${fieldCode}, Non-JIS: ${containsNonJIS}, 特殊文字: ${containsSpecialChar}`);
             
                 if (containsNonJIS || containsSpecialChar) {
                     let fieldElement = kintone.app.record.getFieldElement(fieldCode);
@@ -339,8 +339,9 @@ import { KintoneRestAPIClient, KintoneRecordField } from "@kintone/rest-api-clie
                 button.disabled = false;
                 
                 alert("JIS非対応文字の置換が完了しました");
-             
-                
+
+                location.reload();
+
             } catch (err) {
                 if (err instanceof Error) {
                     console.error(err);
