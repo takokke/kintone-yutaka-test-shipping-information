@@ -3,7 +3,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   entry: {
-    'kintone-env-dependent-char': './src/kintone-env-dependent-char.ts'
+    'kintone-env-dependent-char': './src/ts/kintone-env-dependent-char.ts'
   },
 
   output: {
